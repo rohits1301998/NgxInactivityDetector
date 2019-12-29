@@ -1,0 +1,43 @@
+{
+  "name": "ngx-inactivity-detector",
+  "version": "1.0.0",
+  "description": "A simple directive to detect inactivity of user",
+  "author": "Rohit Singh",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rohits1301998/NgxInactivityDetector.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rohits1301998/NgxInactivityDetector/issues"
+  },
+  "homepage": "https://github.com/rohits1301998/NgxInactivityDetector",
+  "keywords": [
+    "javascript",
+    "angular",
+    "typescript",
+    "inactivity",
+    "inactivity-detector",
+    "directive"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": "^8.0.3",
+    "@angular/core": "^8.0.3",
+    "rxjs": "^6.1.0",
+    "rxjs-compat": "^6.5.2"
+  },
+  "main": "bundles/ngx-inactivity-detector.umd.js",
+  "module": "fesm5/ngx-inactivity-detector.js",
+  "es2015": "fesm2015/ngx-inactivity-detector.js",
+  "esm5": "esm5/ngx-inactivity-detector.js",
+  "esm2015": "esm2015/ngx-inactivity-detector.js",
+  "fesm5": "fesm5/ngx-inactivity-detector.js",
+  "fesm2015": "fesm2015/ngx-inactivity-detector.js",
+  "typings": "ngx-inactivity-detector.d.ts",
+  "metadata": "ngx-inactivity-detector.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  },
+  "private": false
+}

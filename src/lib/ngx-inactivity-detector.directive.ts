@@ -19,6 +19,23 @@ export class NgxInactivityDetectorDirective implements AfterViewInit, OnDestroy 
   @Input() ngxInactivityDetector = 10;
 
   /**
+   * delay time in milliseconds between each event
+   */
+  @Input() debounceTime = 1000;
+
+  /**
+   * events which triggers reset
+   */
+  @Input() resetEvents = [
+    'mousedown',
+    'mousemove',
+    'touchend',
+    'touchmove',
+    'wheel',
+    'keypress'
+  ];
+
+  /**
    * emits after given interval
    */
   @Output() inactivityTimeout = new EventEmitter();
@@ -41,6 +58,8 @@ export class NgxInactivityDetectorDirective implements AfterViewInit, OnDestroy 
   private inactivityIntervalRef;
 
   private eventSubscriptions: Subscription;
+
+  private eventsListeners = [];
 
   /**
    * mousedown event
@@ -94,24 +113,21 @@ export class NgxInactivityDetectorDirective implements AfterViewInit, OnDestroy 
   }
 
   /**
-   * creates observable of each event
+   * creates an array of observable of each event
    */
   private setupInactivityListeners() {
-    this.mouseDown = fromEvent(document, 'mousedown');
-    this.mouseMove = fromEvent(document, 'mousemove');
-    this.touchEnd = fromEvent(document, 'touchend');
-    this.touchMove = fromEvent(document, 'touchmove');
-    this.wheelMove = fromEvent(document, 'wheel');
-    this.keyPress = fromEvent(document, 'keypress');
+    for (const event of this.resetEvents) {
+      this.eventsListeners.push(fromEvent(document, event));
+    }
   }
 
   /**
    * Subscribes to each events observable
    */
   private subscribeEvents() {
-    const allEvents = merge(this.mouseDown, this.mouseMove, this.touchEnd, this.touchMove, this.wheelMove, this.keyPress);
-    this.eventSubscriptions = allEvents.pipe(debounceTime(1000))
-    .subscribe( (event) => {
+    const allEvents = merge(...this.eventsListeners);
+    this.eventSubscriptions = allEvents.pipe(debounceTime(this.debounceTime))
+    .subscribe( (event: Event) => {
       const timeDifference = (Date.now() - this.startTime) / (1000 * 60);
       this.timerReset.emit({
         resetEvent: event,

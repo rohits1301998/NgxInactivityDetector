@@ -59,6 +59,9 @@ export class AppComponent {
 
 ## Options
 - **[ngxInactivityDetector]** - inactivity timeout in minutes (10 minutes by defualt)
+- **[debounceTime]** - delay between each reset event in milliseconds (1000 by default)
+- **[resetEvents]** - list of events which triggers reset timeout (['mousedown','mousemove','touchend','touchmove','wheel','keypress'] by default)
+ 
 - **(inactivityTimeout)** - event emitter to handle inactivity callback
 - **(timerReset)** - event emitter whenever the inactivity timer resets
 

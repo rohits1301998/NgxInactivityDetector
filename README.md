@@ -63,7 +63,7 @@ export class AppComponent {
 - **[resetEvents]** - list of events which triggers reset timeout (['mousedown','mousemove','touchend','touchmove','wheel','keypress'] by default)
  
 - **(inactivityTimeout)** - event emitter to handle inactivity callback
-- **(timerReset)** - event emitter whenever the inactivity timer resets
+- **(timerReset)** - event emitter whenever the inactivity timer resets ( can be used to detect the most recent instant when the user prevented the inactivity)
 
 
 ## Examples
